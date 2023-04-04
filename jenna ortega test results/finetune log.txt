@@ -1,0 +1,509 @@
+Loading settings from /content/LoRA/config/config_file.toml...
+/content/LoRA/config/config_file
+prepare tokenizer
+Downloading (…)olve/main/vocab.json: 100% 961k/961k [00:00<00:00, 6.94MB/s]
+Downloading (…)olve/main/merges.txt: 100% 525k/525k [00:00<00:00, 4.62MB/s]
+Downloading (…)cial_tokens_map.json: 100% 389/389 [00:00<00:00, 86.2kB/s]
+Downloading (…)okenizer_config.json: 100% 905/905 [00:00<00:00, 188kB/s]
+update token length: 225
+Load dataset config from /content/LoRA/config/dataset_config.toml
+loading existing metadata: /content/LoRA/meta_lat.json
+metadata has bucket info, enable bucketing / メタデータにbucket情報があるためbucketを有効にします
+using bucket info in metadata / メタデータ内のbucket情報を使います
+[Dataset 0]
+  batch_size: 6
+  resolution: (512, 512)
+  enable_bucket: True
+  min_bucket_reso: None
+  max_bucket_reso: None
+  bucket_reso_steps: None
+  bucket_no_upscale: None
+
+  [Subset 0 of Dataset 0]
+    image_dir: "/content/drive/MyDrive/LoRA/jenna"
+    image_count: 390
+    num_repeats: 5
+    shuffle_caption: True
+    keep_tokens: 0
+    caption_dropout_rate: 0
+    caption_dropout_every_n_epoches: 0
+    caption_tag_dropout_rate: 0
+    color_aug: False
+    flip_aug: False
+    face_crop_aug_range: None
+    random_crop: False
+    metadata_file: /content/LoRA/meta_lat.json
+
+
+[Dataset 0]
+loading image sizes.
+100% 390/390 [00:00<00:00, 2004630.59it/s]
+make buckets
+number of images (including repeats) / 各bucketの画像枚数（繰り返し回数を含む）
+bucket 0: resolution (384, 640), count: 920
+bucket 1: resolution (512, 512), count: 900
+bucket 2: resolution (640, 384), count: 130
+mean ar error (without repeats): 0.0
+prepare accelerator
+Using accelerator 0.15.0 or above.
+load StableDiffusion checkpoint
+loading u-net: <All keys matched successfully>
+loading vae: <All keys matched successfully>
+Downloading (…)lve/main/config.json: 100% 4.52k/4.52k [00:00<00:00, 457kB/s]
+Downloading (…)"pytorch_model.bin";: 100% 1.71G/1.71G [00:46<00:00, 36.9MB/s]
+loading text encoder: <All keys matched successfully>
+load VAE: /content/drive/MyDrive/Fast-Dreambooth/vae-ft-mse-840000-ema-pruned.safetensors
+additional VAE loaded
+Replace CrossAttention.forward to use xformers
+import network module: networks.lora
+create LoRA network. base dim (rank): 64, alpha: 64
+create LoRA for Text Encoder: 72 modules.
+create LoRA for U-Net: 192 modules.
+enable LoRA for text encoder
+enable LoRA for U-Net
+prepare optimizer, data loader etc.
+CUDA SETUP: CUDA runtime path found: /usr/local/cuda/lib64/libcudart.so
+CUDA SETUP: Highest compute capability among GPUs detected: 7.5
+CUDA SETUP: Detected CUDA version 118
+CUDA SETUP: Loading binary /usr/local/lib/python3.9/dist-packages/bitsandbytes/libbitsandbytes_cuda118.so...
+use 8-bit AdamW optimizer | {}
+override steps. steps for 20 epochs is / 指定エポックまでのステップ数: 6520
+running training / 学習開始
+  num train images * repeats / 学習画像の数×繰り返し回数: 1950
+  num reg images / 正則化画像の数: 0
+  num batches per epoch / 1epochのバッチ数: 326
+  num epochs / epoch数: 20
+  batch size per device / バッチサイズ: 6
+  gradient accumulation steps / 勾配を合計するステップ数 = 1
+  total optimization steps / 学習ステップ数: 6520
+steps:   0% 0/6520 [00:00<?, ?it/s]epoch 1/20
+steps:   5% 326/6520 [07:48<2:28:17,  1.44s/it, loss=0.133]saving checkpoint: /content/drive/MyDrive/LoRA/output/jennawdnsdy-000001.safetensors
+generating sample images at step / サンプル画像生成 ステップ: 326
+prompt: young lady, RAW Photo, Analog style, leaning on oak tree, high-quality, (high detailed skin, half body:1.2), 8k uhd, dslr, soft lighting, high quality, film grain, Fujifilm XT3  
+negative_prompt: lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry  
+height: 768
+width: 512
+sample_steps: 28
+scale: 7.0
+
+  0% 0/28 [00:00<?, ?it/s]
+  4% 1/28 [00:00<00:11,  2.32it/s]
+  7% 2/28 [00:00<00:09,  2.84it/s]
+ 11% 3/28 [00:01<00:08,  3.00it/s]
+ 14% 4/28 [00:01<00:07,  3.10it/s]
+ 18% 5/28 [00:01<00:07,  3.16it/s]
+ 21% 6/28 [00:01<00:06,  3.20it/s]
+ 25% 7/28 [00:02<00:06,  3.22it/s]
+ 29% 8/28 [00:02<00:06,  3.24it/s]
+ 32% 9/28 [00:02<00:05,  3.25it/s]
+ 36% 10/28 [00:03<00:05,  3.24it/s]
+ 39% 11/28 [00:03<00:05,  3.25it/s]
+ 43% 12/28 [00:03<00:04,  3.25it/s]
+ 46% 13/28 [00:04<00:04,  3.25it/s]
+ 50% 14/28 [00:04<00:04,  3.26it/s]
+ 54% 15/28 [00:04<00:03,  3.26it/s]
+ 57% 16/28 [00:05<00:03,  3.25it/s]
+ 61% 17/28 [00:05<00:03,  3.25it/s]
+ 64% 18/28 [00:05<00:03,  3.26it/s]
+ 68% 19/28 [00:05<00:02,  3.26it/s]
+ 71% 20/28 [00:06<00:02,  3.26it/s]
+ 75% 21/28 [00:06<00:02,  3.26it/s]
+ 79% 22/28 [00:06<00:01,  3.25it/s]
+ 82% 23/28 [00:07<00:01,  3.25it/s]
+ 86% 24/28 [00:07<00:01,  3.25it/s]
+ 89% 25/28 [00:07<00:00,  3.26it/s]
+ 93% 26/28 [00:08<00:00,  3.26it/s]
+ 96% 27/28 [00:08<00:00,  3.25it/s]
+100% 28/28 [00:08<00:00,  3.21it/s]
+epoch 2/20
+steps:  10% 652/6520 [15:35<2:20:20,  1.44s/it, loss=0.121]saving checkpoint: /content/drive/MyDrive/LoRA/output/jennawdnsdy-000002.safetensors
+generating sample images at step / サンプル画像生成 ステップ: 652
+prompt: young lady, RAW Photo, Analog style, leaning on oak tree, high-quality, (high detailed skin, half body:1.2), 8k uhd, dslr, soft lighting, high quality, film grain, Fujifilm XT3  
+negative_prompt: lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry  
+height: 768
+width: 512
+sample_steps: 28
+scale: 7.0
+
+  0% 0/28 [00:00<?, ?it/s]
+  4% 1/28 [00:00<00:08,  3.33it/s]
+  7% 2/28 [00:00<00:07,  3.30it/s]
+ 11% 3/28 [00:00<00:07,  3.25it/s]
+ 14% 4/28 [00:01<00:07,  3.25it/s]
+ 18% 5/28 [00:01<00:07,  3.26it/s]
+ 21% 6/28 [00:01<00:06,  3.27it/s]
+ 25% 7/28 [00:02<00:06,  3.26it/s]
+ 29% 8/28 [00:02<00:06,  3.26it/s]
+ 32% 9/28 [00:02<00:05,  3.27it/s]
+ 36% 10/28 [00:03<00:05,  3.26it/s]
+ 39% 11/28 [00:03<00:05,  3.26it/s]
+ 43% 12/28 [00:03<00:04,  3.26it/s]
+ 46% 13/28 [00:03<00:04,  3.26it/s]
+ 50% 14/28 [00:04<00:04,  3.27it/s]
+ 54% 15/28 [00:04<00:03,  3.27it/s]
+ 57% 16/28 [00:04<00:03,  3.27it/s]
+ 61% 17/28 [00:05<00:03,  3.27it/s]
+ 64% 18/28 [00:05<00:03,  3.27it/s]
+ 68% 19/28 [00:05<00:02,  3.27it/s]
+ 71% 20/28 [00:06<00:02,  3.26it/s]
+ 75% 21/28 [00:06<00:02,  3.26it/s]
+ 79% 22/28 [00:06<00:01,  3.26it/s]
+ 82% 23/28 [00:07<00:01,  3.26it/s]
+ 86% 24/28 [00:07<00:01,  3.26it/s]
+ 89% 25/28 [00:07<00:00,  3.26it/s]
+ 93% 26/28 [00:07<00:00,  3.26it/s]
+ 96% 27/28 [00:08<00:00,  3.26it/s]
+100% 28/28 [00:08<00:00,  3.26it/s]
+epoch 3/20
+steps:  15% 978/6520 [23:22<2:12:25,  1.43s/it, loss=0.114]saving checkpoint: /content/drive/MyDrive/LoRA/output/jennawdnsdy-000003.safetensors
+generating sample images at step / サンプル画像生成 ステップ: 978
+prompt: jenna ortega, young lady, high-quality, (high detailed skin)
+negative_prompt: lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry  
+height: 768
+width: 512
+sample_steps: 28
+scale: 7.0
+
+  0% 0/28 [00:00<?, ?it/s]
+  4% 1/28 [00:00<00:08,  3.32it/s]
+  7% 2/28 [00:00<00:07,  3.30it/s]
+ 11% 3/28 [00:00<00:07,  3.26it/s]
+ 14% 4/28 [00:01<00:07,  3.27it/s]
+ 18% 5/28 [00:01<00:07,  3.27it/s]
+ 21% 6/28 [00:01<00:06,  3.27it/s]
+ 25% 7/28 [00:02<00:06,  3.27it/s]
+ 29% 8/28 [00:02<00:06,  3.28it/s]
+ 32% 9/28 [00:02<00:05,  3.28it/s]
+ 36% 10/28 [00:03<00:05,  3.27it/s]
+ 39% 11/28 [00:03<00:05,  3.27it/s]
+ 43% 12/28 [00:03<00:04,  3.27it/s]
+ 46% 13/28 [00:03<00:04,  3.27it/s]
+ 50% 14/28 [00:04<00:04,  3.26it/s]
+ 54% 15/28 [00:04<00:03,  3.27it/s]
+ 57% 16/28 [00:04<00:03,  3.27it/s]
+ 61% 17/28 [00:05<00:03,  3.27it/s]
+ 64% 18/28 [00:05<00:03,  3.27it/s]
+ 68% 19/28 [00:05<00:02,  3.28it/s]
+ 71% 20/28 [00:06<00:02,  3.27it/s]
+ 75% 21/28 [00:06<00:02,  3.27it/s]
+ 79% 22/28 [00:06<00:01,  3.26it/s]
+ 82% 23/28 [00:07<00:01,  3.26it/s]
+ 86% 24/28 [00:07<00:01,  3.26it/s]
+ 89% 25/28 [00:07<00:00,  3.26it/s]
+ 93% 26/28 [00:07<00:00,  3.27it/s]
+ 96% 27/28 [00:08<00:00,  3.27it/s]
+100% 28/28 [00:08<00:00,  3.27it/s]
+epoch 4/20
+steps:  20% 1304/6520 [31:08<2:04:34,  1.43s/it, loss=0.109]saving checkpoint: /content/drive/MyDrive/LoRA/output/jennawdnsdy-000004.safetensors
+generating sample images at step / サンプル画像生成 ステップ: 1304
+prompt: jenna ortega, young lady, high-quality, (high detailed skin)
+negative_prompt: lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry  
+height: 768
+width: 512
+sample_steps: 28
+scale: 7.0
+
+  0% 0/28 [00:00<?, ?it/s]
+  4% 1/28 [00:00<00:08,  3.31it/s]
+  7% 2/28 [00:00<00:07,  3.28it/s]
+ 11% 3/28 [00:00<00:07,  3.26it/s]
+ 14% 4/28 [00:01<00:07,  3.27it/s]
+ 18% 5/28 [00:01<00:07,  3.27it/s]
+ 21% 6/28 [00:01<00:06,  3.28it/s]
+ 25% 7/28 [00:02<00:06,  3.27it/s]
+ 29% 8/28 [00:02<00:06,  3.26it/s]
+ 32% 9/28 [00:02<00:05,  3.26it/s]
+ 36% 10/28 [00:03<00:05,  3.26it/s]
+ 39% 11/28 [00:03<00:05,  3.26it/s]
+ 43% 12/28 [00:03<00:04,  3.27it/s]
+ 46% 13/28 [00:03<00:04,  3.27it/s]
+ 50% 14/28 [00:04<00:04,  3.27it/s]
+ 54% 15/28 [00:04<00:03,  3.27it/s]
+ 57% 16/28 [00:04<00:03,  3.26it/s]
+ 61% 17/28 [00:05<00:03,  3.25it/s]
+ 64% 18/28 [00:05<00:03,  3.26it/s]
+ 68% 19/28 [00:05<00:02,  3.26it/s]
+ 71% 20/28 [00:06<00:02,  3.27it/s]
+ 75% 21/28 [00:06<00:02,  3.27it/s]
+ 79% 22/28 [00:06<00:01,  3.26it/s]
+ 82% 23/28 [00:07<00:01,  3.26it/s]
+ 86% 24/28 [00:07<00:01,  3.26it/s]
+ 89% 25/28 [00:07<00:00,  3.26it/s]
+ 93% 26/28 [00:07<00:00,  3.26it/s]
+ 96% 27/28 [00:08<00:00,  3.27it/s]
+100% 28/28 [00:08<00:00,  3.27it/s]
+epoch 5/20
+steps:  25% 1630/6520 [38:55<1:56:45,  1.43s/it, loss=0.104]saving checkpoint: /content/drive/MyDrive/LoRA/output/jennawdnsdy-000005.safetensors
+generating sample images at step / サンプル画像生成 ステップ: 1630
+prompt: jenna ortega, young lady, high-quality, (high detailed skin)
+negative_prompt: lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry  
+height: 768
+width: 512
+sample_steps: 28
+scale: 7.0
+
+  0% 0/28 [00:00<?, ?it/s]
+  4% 1/28 [00:00<00:08,  3.35it/s]
+  7% 2/28 [00:00<00:07,  3.32it/s]
+ 11% 3/28 [00:00<00:07,  3.27it/s]
+ 14% 4/28 [00:01<00:07,  3.27it/s]
+ 18% 5/28 [00:01<00:07,  3.27it/s]
+ 21% 6/28 [00:01<00:06,  3.27it/s]
+ 25% 7/28 [00:02<00:06,  3.26it/s]
+ 29% 8/28 [00:02<00:06,  3.26it/s]
+ 32% 9/28 [00:02<00:05,  3.26it/s]
+ 36% 10/28 [00:03<00:05,  3.26it/s]
+ 39% 11/28 [00:03<00:05,  3.26it/s]
+ 43% 12/28 [00:03<00:04,  3.27it/s]
+ 46% 13/28 [00:03<00:04,  3.27it/s]
+ 50% 14/28 [00:04<00:04,  3.27it/s]
+ 54% 15/28 [00:04<00:03,  3.27it/s]
+ 57% 16/28 [00:04<00:03,  3.27it/s]
+ 61% 17/28 [00:05<00:03,  3.27it/s]
+ 64% 18/28 [00:05<00:03,  3.26it/s]
+ 68% 19/28 [00:05<00:02,  3.26it/s]
+ 71% 20/28 [00:06<00:02,  3.26it/s]
+ 75% 21/28 [00:06<00:02,  3.27it/s]
+ 79% 22/28 [00:06<00:01,  3.27it/s]
+ 82% 23/28 [00:07<00:01,  3.26it/s]
+ 86% 24/28 [00:07<00:01,  3.27it/s]
+ 89% 25/28 [00:07<00:00,  3.26it/s]
+ 93% 26/28 [00:07<00:00,  3.25it/s]
+ 96% 27/28 [00:08<00:00,  3.26it/s]
+100% 28/28 [00:08<00:00,  3.27it/s]
+epoch 6/20
+steps:  30% 1956/6520 [46:41<1:48:57,  1.43s/it, loss=0.105]saving checkpoint: /content/drive/MyDrive/LoRA/output/jennawdnsdy-000006.safetensors
+generating sample images at step / サンプル画像生成 ステップ: 1956
+prompt: jenna ortega, young lady, high-quality, (high detailed skin)
+negative_prompt: lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry  
+height: 768
+width: 512
+sample_steps: 28
+scale: 7.0
+
+  0% 0/28 [00:00<?, ?it/s]
+  4% 1/28 [00:00<00:08,  3.34it/s]
+  7% 2/28 [00:00<00:07,  3.31it/s]
+ 11% 3/28 [00:00<00:07,  3.27it/s]
+ 14% 4/28 [00:01<00:07,  3.28it/s]
+ 18% 5/28 [00:01<00:07,  3.27it/s]
+ 21% 6/28 [00:01<00:06,  3.27it/s]
+ 25% 7/28 [00:02<00:06,  3.26it/s]
+ 29% 8/28 [00:02<00:06,  3.25it/s]
+ 32% 9/28 [00:02<00:05,  3.27it/s]
+ 36% 10/28 [00:03<00:05,  3.28it/s]
+ 39% 11/28 [00:03<00:05,  3.27it/s]
+ 43% 12/28 [00:03<00:04,  3.28it/s]
+ 46% 13/28 [00:03<00:04,  3.28it/s]
+ 50% 14/28 [00:04<00:04,  3.28it/s]
+ 54% 15/28 [00:04<00:03,  3.27it/s]
+ 57% 16/28 [00:04<00:03,  3.28it/s]
+ 61% 17/28 [00:05<00:03,  3.28it/s]
+ 64% 18/28 [00:05<00:03,  3.27it/s]
+ 68% 19/28 [00:05<00:02,  3.27it/s]
+ 71% 20/28 [00:06<00:02,  3.28it/s]
+ 75% 21/28 [00:06<00:02,  3.28it/s]
+ 79% 22/28 [00:06<00:01,  3.28it/s]
+ 82% 23/28 [00:07<00:01,  3.28it/s]
+ 86% 24/28 [00:07<00:01,  3.27it/s]
+ 89% 25/28 [00:07<00:00,  3.27it/s]
+ 93% 26/28 [00:07<00:00,  3.27it/s]
+ 96% 27/28 [00:08<00:00,  3.27it/s]
+100% 28/28 [00:08<00:00,  3.27it/s]
+epoch 7/20
+steps:  35% 2282/6520 [54:30<1:41:13,  1.43s/it, loss=0.0981]saving checkpoint: /content/drive/MyDrive/LoRA/output/jennawdnsdy-000007.safetensors
+generating sample images at step / サンプル画像生成 ステップ: 2282
+prompt: jenna ortega, young lady, high-quality, (high detailed skin)
+negative_prompt: lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry  
+height: 768
+width: 512
+sample_steps: 28
+scale: 7.0
+
+  0% 0/28 [00:00<?, ?it/s]
+  4% 1/28 [00:00<00:08,  3.33it/s]
+  7% 2/28 [00:00<00:07,  3.29it/s]
+ 11% 3/28 [00:00<00:07,  3.25it/s]
+ 14% 4/28 [00:01<00:07,  3.25it/s]
+ 18% 5/28 [00:01<00:07,  3.27it/s]
+ 21% 6/28 [00:01<00:06,  3.26it/s]
+ 25% 7/28 [00:02<00:06,  3.26it/s]
+ 29% 8/28 [00:02<00:06,  3.26it/s]
+ 32% 9/28 [00:02<00:05,  3.26it/s]
+ 36% 10/28 [00:03<00:05,  3.26it/s]
+ 39% 11/28 [00:03<00:05,  3.26it/s]
+ 43% 12/28 [00:03<00:04,  3.26it/s]
+ 46% 13/28 [00:03<00:04,  3.25it/s]
+ 50% 14/28 [00:04<00:04,  3.26it/s]
+ 54% 15/28 [00:04<00:03,  3.26it/s]
+ 57% 16/28 [00:04<00:03,  3.26it/s]
+ 61% 17/28 [00:05<00:03,  3.26it/s]
+ 64% 18/28 [00:05<00:03,  3.26it/s]
+ 68% 19/28 [00:05<00:02,  3.26it/s]
+ 71% 20/28 [00:06<00:02,  3.26it/s]
+ 75% 21/28 [00:06<00:02,  3.26it/s]
+ 79% 22/28 [00:06<00:01,  3.26it/s]
+ 82% 23/28 [00:07<00:01,  3.26it/s]
+ 86% 24/28 [00:07<00:01,  3.26it/s]
+ 89% 25/28 [00:07<00:00,  3.26it/s]
+ 93% 26/28 [00:07<00:00,  3.27it/s]
+ 96% 27/28 [00:08<00:00,  3.27it/s]
+100% 28/28 [00:08<00:00,  3.26it/s]
+epoch 8/20
+steps:  40% 2608/6520 [1:02:18<1:33:27,  1.43s/it, loss=0.0957]saving checkpoint: /content/drive/MyDrive/LoRA/output/jennawdnsdy-000008.safetensors
+generating sample images at step / サンプル画像生成 ステップ: 2608
+prompt: jenna ortega, young lady, high-quality, (high detailed skin)
+negative_prompt: lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry  
+height: 768
+width: 512
+sample_steps: 28
+scale: 7.0
+
+  0% 0/28 [00:00<?, ?it/s]
+  4% 1/28 [00:00<00:08,  3.33it/s]
+  7% 2/28 [00:00<00:07,  3.31it/s]
+ 11% 3/28 [00:00<00:07,  3.27it/s]
+ 14% 4/28 [00:01<00:07,  3.28it/s]
+ 18% 5/28 [00:01<00:07,  3.28it/s]
+ 21% 6/28 [00:01<00:06,  3.28it/s]
+ 25% 7/28 [00:02<00:06,  3.27it/s]
+ 29% 8/28 [00:02<00:06,  3.27it/s]
+ 32% 9/28 [00:02<00:05,  3.27it/s]
+ 36% 10/28 [00:03<00:05,  3.26it/s]
+ 39% 11/28 [00:03<00:05,  3.27it/s]
+ 43% 12/28 [00:03<00:04,  3.28it/s]
+ 46% 13/28 [00:03<00:04,  3.27it/s]
+ 50% 14/28 [00:04<00:04,  3.27it/s]
+ 54% 15/28 [00:04<00:03,  3.27it/s]
+ 57% 16/28 [00:04<00:03,  3.27it/s]
+ 61% 17/28 [00:05<00:03,  3.26it/s]
+ 64% 18/28 [00:05<00:03,  3.26it/s]
+ 68% 19/28 [00:05<00:02,  3.26it/s]
+ 71% 20/28 [00:06<00:02,  3.26it/s]
+ 75% 21/28 [00:06<00:02,  3.27it/s]
+ 79% 22/28 [00:06<00:01,  3.27it/s]
+ 82% 23/28 [00:07<00:01,  3.27it/s]
+ 86% 24/28 [00:07<00:01,  3.26it/s]
+ 89% 25/28 [00:07<00:00,  3.26it/s]
+ 93% 26/28 [00:07<00:00,  3.27it/s]
+ 96% 27/28 [00:08<00:00,  3.27it/s]
+100% 28/28 [00:08<00:00,  3.27it/s]
+epoch 9/20
+steps:  45% 2934/6520 [1:10:07<1:25:42,  1.43s/it, loss=0.0876]saving checkpoint: /content/drive/MyDrive/LoRA/output/jennawdnsdy-000009.safetensors
+generating sample images at step / サンプル画像生成 ステップ: 2934
+prompt: jenna ortega, young lady, high-quality, (high detailed skin)
+negative_prompt: lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry  
+height: 768
+width: 512
+sample_steps: 28
+scale: 7.0
+
+  0% 0/28 [00:00<?, ?it/s]
+  4% 1/28 [00:00<00:08,  3.29it/s]
+  7% 2/28 [00:00<00:07,  3.28it/s]
+ 11% 3/28 [00:00<00:07,  3.26it/s]
+ 14% 4/28 [00:01<00:07,  3.27it/s]
+ 18% 5/28 [00:01<00:07,  3.27it/s]
+ 21% 6/28 [00:01<00:06,  3.28it/s]
+ 25% 7/28 [00:02<00:06,  3.27it/s]
+ 29% 8/28 [00:02<00:06,  3.27it/s]
+ 32% 9/28 [00:02<00:05,  3.26it/s]
+ 36% 10/28 [00:03<00:05,  3.26it/s]
+ 39% 11/28 [00:03<00:05,  3.26it/s]
+ 43% 12/28 [00:03<00:04,  3.27it/s]
+ 46% 13/28 [00:03<00:04,  3.27it/s]
+ 50% 14/28 [00:04<00:04,  3.27it/s]
+ 54% 15/28 [00:04<00:03,  3.26it/s]
+ 57% 16/28 [00:04<00:03,  3.26it/s]
+ 61% 17/28 [00:05<00:03,  3.26it/s]
+ 64% 18/28 [00:05<00:03,  3.26it/s]
+ 68% 19/28 [00:05<00:02,  3.27it/s]
+ 71% 20/28 [00:06<00:02,  3.27it/s]
+ 75% 21/28 [00:06<00:02,  3.27it/s]
+ 79% 22/28 [00:06<00:01,  3.27it/s]
+ 82% 23/28 [00:07<00:01,  3.26it/s]
+ 86% 24/28 [00:07<00:01,  3.26it/s]
+ 89% 25/28 [00:07<00:00,  3.26it/s]
+ 93% 26/28 [00:07<00:00,  3.26it/s]
+ 96% 27/28 [00:08<00:00,  3.27it/s]
+100% 28/28 [00:08<00:00,  3.27it/s]
+epoch 10/20
+steps:  50% 3260/6520 [1:17:55<1:17:55,  1.43s/it, loss=0.0826]saving checkpoint: /content/drive/MyDrive/LoRA/output/jennawdnsdy-000010.safetensors
+generating sample images at step / サンプル画像生成 ステップ: 3260
+prompt: jenna ortega, young lady, high-quality, (high detailed skin)
+negative_prompt: lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry  
+height: 768
+width: 512
+sample_steps: 28
+scale: 7.0
+
+  0% 0/28 [00:00<?, ?it/s]
+  4% 1/28 [00:00<00:08,  3.34it/s]
+  7% 2/28 [00:00<00:07,  3.31it/s]
+ 11% 3/28 [00:00<00:07,  3.26it/s]
+ 14% 4/28 [00:01<00:07,  3.27it/s]
+ 18% 5/28 [00:01<00:07,  3.27it/s]
+ 21% 6/28 [00:01<00:06,  3.28it/s]
+ 25% 7/28 [00:02<00:06,  3.27it/s]
+ 29% 8/28 [00:02<00:06,  3.26it/s]
+ 32% 9/28 [00:02<00:05,  3.27it/s]
+ 36% 10/28 [00:03<00:05,  3.26it/s]
+ 39% 11/28 [00:03<00:05,  3.26it/s]
+ 43% 12/28 [00:03<00:04,  3.27it/s]
+ 46% 13/28 [00:03<00:04,  3.28it/s]
+ 50% 14/28 [00:04<00:04,  3.27it/s]
+ 54% 15/28 [00:04<00:03,  3.27it/s]
+ 57% 16/28 [00:04<00:03,  3.27it/s]
+ 61% 17/28 [00:05<00:03,  3.27it/s]
+ 64% 18/28 [00:05<00:03,  3.27it/s]
+ 68% 19/28 [00:05<00:02,  3.26it/s]
+ 71% 20/28 [00:06<00:02,  3.26it/s]
+ 75% 21/28 [00:06<00:02,  3.26it/s]
+ 79% 22/28 [00:06<00:01,  3.26it/s]
+ 82% 23/28 [00:07<00:01,  3.26it/s]
+ 86% 24/28 [00:07<00:01,  3.27it/s]
+ 89% 25/28 [00:07<00:00,  3.26it/s]
+ 93% 26/28 [00:07<00:00,  3.25it/s]
+ 96% 27/28 [00:08<00:00,  3.26it/s]
+100% 28/28 [00:08<00:00,  3.27it/s]
+epoch 11/20
+steps:  55% 3586/6520 [1:25:44<1:10:09,  1.43s/it, loss=0.0858]saving checkpoint: /content/drive/MyDrive/LoRA/output/jennawdnsdy-000011.safetensors
+generating sample images at step / サンプル画像生成 ステップ: 3586
+prompt: jenna ortega, young lady, high-quality, (high detailed skin)
+negative_prompt: lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry  
+height: 768
+width: 512
+sample_steps: 28
+scale: 7.0
+
+  0% 0/28 [00:00<?, ?it/s]
+  4% 1/28 [00:00<00:08,  3.32it/s]
+  7% 2/28 [00:00<00:07,  3.29it/s]
+ 11% 3/28 [00:00<00:07,  3.26it/s]
+ 14% 4/28 [00:01<00:07,  3.26it/s]
+ 18% 5/28 [00:01<00:07,  3.27it/s]
+ 21% 6/28 [00:01<00:06,  3.27it/s]
+ 25% 7/28 [00:02<00:06,  3.27it/s]
+ 29% 8/28 [00:02<00:06,  3.27it/s]
+ 32% 9/28 [00:02<00:05,  3.27it/s]
+ 36% 10/28 [00:03<00:05,  3.26it/s]
+ 39% 11/28 [00:03<00:05,  3.27it/s]
+ 43% 12/28 [00:03<00:04,  3.27it/s]
+ 46% 13/28 [00:03<00:04,  3.28it/s]
+ 50% 14/28 [00:04<00:04,  3.27it/s]
+ 54% 15/28 [00:04<00:03,  3.27it/s]
+ 57% 16/28 [00:04<00:03,  3.27it/s]
+ 61% 17/28 [00:05<00:03,  3.27it/s]
+ 64% 18/28 [00:05<00:03,  3.27it/s]
+ 68% 19/28 [00:05<00:02,  3.27it/s]
+ 71% 20/28 [00:06<00:02,  3.28it/s]
+ 75% 21/28 [00:06<00:02,  3.28it/s]
+ 79% 22/28 [00:06<00:01,  3.28it/s]
+ 82% 23/28 [00:07<00:01,  3.28it/s]
+ 86% 24/28 [00:07<00:01,  3.28it/s]
+ 89% 25/28 [00:07<00:00,  3.28it/s]
+ 93% 26/28 [00:07<00:00,  3.28it/s]
+ 96% 27/28 [00:08<00:00,  3.27it/s]
+100% 28/28 [00:08<00:00,  3.27it/s]
+epoch 12/20
+steps:  59% 3838/6520 [1:31:48<1:04:09,  1.44s/it, loss=0.0829]
