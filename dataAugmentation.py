@@ -8,10 +8,10 @@ from glob import glob
 from tkinter import filedialog
 
 def rotate_image(image, angle):
-	center = tuple(np.array(image.shape[1::-1]) / 2)
-	rot_mat = cv2.getRotationMatrix2D(center, angle, 1.0)
-	result = cv2.warpAffine(image, rot_mat, image.shape[1::-1], flags=cv2.INTER_LINEAR)
-	return result
+    center = tuple(np.array(image.shape[1::-1]) / 2)
+    rot_mat = cv2.getRotationMatrix2D(center, angle, 1.0)
+    result = cv2.warpAffine(image, rot_mat, image.shape[1::-1], flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_CONSTANT, borderValue=(255, 255, 255))
+    return result
 
 def random_crop(image, min_crop_size):
 	height, width = image.shape[:2]
