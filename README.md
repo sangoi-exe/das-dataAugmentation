@@ -22,5 +22,3 @@ This script requires the following Python packages to be installed:
 3. Select the output directory where the augmented images will be saved.
 4. Enter the number of rotations, random crops, brightness adjustments, and contrast adjustments to be performed on each image.
 5. Wait for the script to complete.
-
-## Example
